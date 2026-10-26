@@ -1,4 +1,4 @@
-package com.mycompany.proyecto_final_virtual;
+package vista;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
