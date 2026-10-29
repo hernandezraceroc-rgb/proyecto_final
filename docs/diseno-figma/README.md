@@ -15,7 +15,6 @@ El flujo empieza en la pantalla de Login (modo Present de Figma).
 | 5 | Lista de deseos | Productos guardados, pasar al carrito o quitar | ArrayList<Producto> → deseos.json |
 | 6 | Admin – Productos | Formulario (nombre, cantidad, valor) y tabla de inventario con editar/eliminar | ArrayList.add() + productos.json |
 | 7 | Admin – Pedidos | Cola de pedidos pendientes; se procesa el primero | Queue<Pedido> (FIFO) → pedidos.json |
-| 8 | Estructuras y archivos | Resumen de qué estructura usa cada módulo | — |
 
 ## Estructuras de datos
 
