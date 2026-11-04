@@ -1,5 +1,7 @@
 # Diseño del prototipo (Figma)
 
+UniShop - Tienda Virtual de Articulos
+
 Mockup clicable de la tienda virtual: https://www.figma.com/design/0kFDins6EvNkfGdgSAMzXP
 
 El flujo empieza en la pantalla de Login (modo Present de Figma).
