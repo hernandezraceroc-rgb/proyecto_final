@@ -1,5 +1,7 @@
 # Diseño del prototipo (Figma)
 
+<img width="308" height="246" alt="Captura_de_pantalla_2026-11-05_120611-removebg-preview" src="https://github.com/user-attachments/assets/430b78b3-0e15-4f54-9ce6-7c6b53645d90" />
+
 UniShop - Tienda Virtual de Articulos
 
 Mockup clicable de la tienda virtual: https://www.figma.com/design/0kFDins6EvNkfGdgSAMzXP
