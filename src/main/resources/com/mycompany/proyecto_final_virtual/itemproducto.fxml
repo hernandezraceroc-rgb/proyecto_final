@@ -31,12 +31,12 @@
       </Label>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="btnCarrito" mnemonicParsing="false" style="-fx-background-color: #1A56DB; -fx-background-radius: 8; -fx-padding: 6 12 6 12;" text="Agregar al carrito" textFill="WHITE">
+            <Button fx:id="btnAgregarCarrito" mnemonicParsing="false" style="-fx-background-color: #1A56DB; -fx-background-radius: 8; -fx-padding: 6 12 6 12;" text="Agregar al carrito" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
             </Button>
-            <Button fx:id="btnDeseos" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #E5E7EB; -fx-border-radius: 8; -fx-padding: 6 10 6 10;" text="+ Deseos" textFill="#374151">
+            <Button fx:id="btnAgregarDeseos" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #E5E7EB; -fx-border-radius: 8; -fx-padding: 6 10 6 10;" text="+ Deseos" textFill="#374151">
                <font>
                   <Font name="Segoe UI" size="11.0" />
                </font>
