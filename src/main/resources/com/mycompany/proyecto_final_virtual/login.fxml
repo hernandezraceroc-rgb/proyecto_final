@@ -13,15 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.LoginController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.LoginController">
    <children>
       <VBox alignment="CENTER_LEFT" prefHeight="558.0" prefWidth="431.0" style="-fx-background-color: #1A56DB;;">
          <children>
-            <ImageView fitHeight="109.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../../../Downloads/Captura_de_pantalla_2026-11-05_120611-removebg-preview.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="imgLogo" fitHeight="109.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true" />
             <Label prefHeight="54.0" prefWidth="147.0" text="UniShop" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="35.0" />
@@ -81,12 +77,12 @@
                   </Label>
                   <HBox alignment="CENTER" prefHeight="26.0" prefWidth="176.0" spacing="10.0">
                      <children>
-                        <Button fx:id="btnCliente" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #1A56DB; -fx-background-radius: 20; -fx-padding: 4 12 4 12;;" text="Cliente" textFill="WHITE">
+                        <Button fx:id="btnCliente" mnemonicParsing="false" onAction="#seleccionarCliente" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #1A56DB; -fx-background-radius: 20; -fx-padding: 4 12 4 12;;" text="Cliente" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="11.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnAdmin" mnemonicParsing="false" prefHeight="24.0" prefWidth="102.0" style="-fx-background-color: #EBF5FF;; -fx-background-radius: 20; -fx-padding: 4 12 4 12;" text="Administrador" textFill="#1a56db">
+                        <Button fx:id="btnAdmin" mnemonicParsing="false" onAction="#seleccionarAdministrador" prefHeight="24.0" prefWidth="102.0" style="-fx-background-color: #EBF5FF;; -fx-background-radius: 20; -fx-padding: 4 12 4 12;" text="Administrador" textFill="#1a56db">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -111,7 +107,7 @@
                      </font>
                   </Label>
                   <PasswordField fx:id="txtContrasena" prefHeight="26.0" prefWidth="193.0" promptText="••••••••" />
-                  <Button fx:id="btnIngresar" mnemonicParsing="false" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: #1A56DB; -fx-background-radius: 8;;" text="Ingresar" textFill="WHITE">
+                  <Button fx:id="btnIngresar" mnemonicParsing="false" onAction="#ingresar" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: #1A56DB; -fx-background-radius: 8;;" text="Ingresar" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -119,7 +115,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Hyperlink text="¿No tienes cuenta? Regístrate">
+                  <Hyperlink fx:id="lnkRegistro" onAction="#registrar" text="¿No tienes cuenta? Regístrate">
                      <font>
                         <Font size="10.0" />
                      </font>

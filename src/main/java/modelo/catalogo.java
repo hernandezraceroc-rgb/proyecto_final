@@ -25,13 +25,18 @@ public class catalogo {
     //registrar producto(lo usa el admin)
 
   public boolean registrar(String nombre, int cantidad, double valor) {
+        return registrar(nombre, "General", cantidad, valor);
+    }
+
+    // Registrar producto con categoría (la usa el catálogo y el administrador)
+    public boolean registrar(String nombre, String categoria, int cantidad, double valor) {
         if (nombre == null || nombre.trim().isEmpty() || cantidad < 0 || valor <= 0) {
             return false;
-    }
-    if (buscarPorNombre(nombre) != null) {
+        }
+        if (buscarPorNombre(nombre) != null) {
             return false; // ya existe
-    }
-    productos.add(new producto(nombre.trim(), cantidad, valor));
+        }
+        productos.add(new producto(nombre.trim(), categoria, cantidad, valor));
         return true;
     }
     // Buscar por nombre (ignora mayúsculas)
@@ -83,6 +88,17 @@ public class catalogo {
         p.setCantidad(p.getCantidad() - unidades);
         return true;
     }
+    // Filtrar por categoría (los botones del catálogo)
+    public ArrayList<producto> filtrarPorCategoria(String categoria) {
+        ArrayList<producto> resultado = new ArrayList<>();
+        for (producto p : productos) {
+            if (p.getCategoria().equalsIgnoreCase(categoria)) {
+                resultado.add(p);
+            }
+        }
+        return resultado;
+    }
+
     public ArrayList<producto> getProductos() {
         return productos;
     }

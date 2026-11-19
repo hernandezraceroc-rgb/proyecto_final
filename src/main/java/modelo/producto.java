@@ -5,11 +5,17 @@ import java.util.Objects;
 public class producto {
 
     private String nombre;
+    private String categoria;
     private int cantidad;
     private double valor;
 
     public producto(String nombre, int cantidad, double valor) {
+        this(nombre, "General", cantidad, valor);
+    }
+
+    public producto(String nombre, String categoria, int cantidad, double valor) {
         this.nombre = nombre;
+        this.categoria = categoria == null || categoria.trim().isEmpty() ? "General" : categoria;
         this.cantidad = cantidad;
         this.valor = valor;
     }
@@ -19,8 +25,20 @@ public class producto {
         this(nombre, 1, valor);
     }
 
+    public producto(String nombre, String categoria, double valor) {
+        this(nombre, categoria, 1, valor);
+    }
+
     public String getNombre() {
         return nombre;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public void setNombre(String nombre) {
