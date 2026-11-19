@@ -17,7 +17,11 @@
    <children>
       <VBox alignment="CENTER_LEFT" prefHeight="558.0" prefWidth="431.0" style="-fx-background-color: #1A56DB;;">
          <children>
-            <ImageView fx:id="imgLogo" fitHeight="109.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgLogo" fitHeight="109.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo_unishop.png" />
+               </image>
+            </ImageView>
             <Label prefHeight="54.0" prefWidth="147.0" text="UniShop" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="35.0" />
