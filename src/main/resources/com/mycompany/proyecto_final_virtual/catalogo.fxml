@@ -19,6 +19,9 @@
       <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="834.0" style="-fx-background-color: #1A56DB; -fx-padding: 10; -fx-spacing: 8;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="imgLogo" fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo_unishop.png" />
+               </image>
                <HBox.margin>
                   <Insets left="8.0" />
                </HBox.margin>
