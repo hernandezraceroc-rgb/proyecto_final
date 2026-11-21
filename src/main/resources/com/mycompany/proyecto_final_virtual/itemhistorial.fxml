@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="897.0" style="-fx-border-color: transparent transparent #F3F4F6 transparent; -fx-background-color: white;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.ItemHistorialController">
+   <padding>
+      <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+   </padding>
+   <children>
+      <Label fx:id="lblPedido" prefWidth="80.0" text="(# Pedido)">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblFecha" prefWidth="120.0" text="(Fecha)" textFill="#6b7280">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblProductos" maxWidth="1.7976931348623157E308" text="(Productos)" HBox.hgrow="ALWAYS">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotal" prefWidth="125.0" text="\$ 0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="250.0" spacing="8.0">
+         <children>
+            <Label fx:id="lblEstado" style="-fx-background-color: #DCFCE7; -fx-background-radius: 15; -fx-padding: 4 10 4 10;" text="Estado" textFill="#16a34a">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblEtiquetaExtra" style="-fx-background-color: #DBEAFE; -fx-background-radius: 15; -fx-padding: 4 10 4 10;" text="Tope de la pila" textFill="#1d4ed8">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</HBox>
