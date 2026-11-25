@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="250.0" spacing="8.0" style="-fx-background-radius: 12; -fx-border-radius: 12; -fx-border-color: #E5E7EB;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.ItemDeseoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="250.0" spacing="8.0" style="-fx-background-radius: 12; -fx-border-radius: 12; -fx-border-color: #E5E7EB;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.ItemDeseoController">
    <padding>
       <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
    </padding>
@@ -31,12 +31,12 @@
       </Label>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="btnAgregarCarrito" mnemonicParsing="false" prefHeight="27.0" prefWidth="163.0" style="-fx-background-color: #1A56DB; -fx-background-radius: 8; -fx-padding: 6 12 6 12;" text="Agregar al carrito" textFill="WHITE">
+            <Button fx:id="btnAgregarCarrito" mnemonicParsing="false" onAction="#agregarCarrito" prefHeight="27.0" prefWidth="163.0" style="-fx-background-color: #1A56DB; -fx-background-radius: 8; -fx-padding: 6 12 6 12;" text="Agregar al carrito" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
             </Button>
-            <Button fx:id="btnQuitar" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #E5E7EB; -fx-border-radius: 8; -fx-padding: 6 10 6 10;" text="Quitar" textFill="#374151">
+            <Button fx:id="btnQuitar" mnemonicParsing="false" onAction="#quitar" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #E5E7EB; -fx-border-radius: 8; -fx-padding: 6 10 6 10;" text="Quitar" textFill="#374151">
                <font>
                   <Font name="Segoe UI" size="11.0" />
                </font>

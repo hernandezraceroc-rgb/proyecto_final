@@ -128,8 +128,12 @@ public class LoginController {
         correo.textProperty().addListener((obs, antiguo, nuevo) -> validar.run());
         clave.textProperty().addListener((obs, antiguo, nuevo) -> validar.run());
 
-        dialogo.setResultConverter(boton -> boton == crear
-                && sesion.registrarCliente(correo.getText(), clave.getText()));
+        dialogo.setResultConverter(boton -> {
+            if (boton != crear) {
+                return null;
+            }
+            return sesion.registrarCliente(correo.getText(), clave.getText());
+        });
 
         Optional<Boolean> resultado = dialogo.showAndWait();
         if (resultado.isPresent()) {

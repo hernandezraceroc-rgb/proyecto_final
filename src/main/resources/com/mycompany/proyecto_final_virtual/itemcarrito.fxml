@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="550.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #E5E7EB; -fx-border-radius: 10; -fx-padding: 12 16 12 16;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.ItemCarritoController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="550.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #E5E7EB; -fx-border-radius: 10; -fx-padding: 12 16 12 16;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.ItemCarritoController">
    <children>
       <Pane prefHeight="65.0" prefWidth="65.0" style="-fx-background-color: #F0F2F5; -fx-background-radius: 8;">
          <children>
@@ -25,12 +25,12 @@
                </font>
             </Label>
             <Label fx:id="lblPrecioUnitario" text="Unitario: $ 0" textFill="#6b7280" />
-            <Hyperlink fx:id="btnQuitar" style="-fx-padding: 0;" text="Quitar" textFill="#ef4444" />
+            <Hyperlink fx:id="btnQuitar" onAction="#quitar" style="-fx-padding: 0;" text="Quitar" textFill="#ef4444" />
          </children>
       </VBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="79.0" spacing="8.0" style="-fx-background-color: white; -fx-border-color: #D1D5DB; -fx-background-radius: 6; -fx-border-radius: 6; -fx-padding: 2 6 2 6;">
          <children>
-            <Button fx:id="btnMenos" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 2 6 2 6;" text="-">
+            <Button fx:id="btnMenos" mnemonicParsing="false" onAction="#decrementar" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 2 6 2 6;" text="-">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -40,7 +40,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Button fx:id="btnMas" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 2 6 2 6;" text="+">
+            <Button fx:id="btnMas" mnemonicParsing="false" onAction="#incrementar" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 2 6 2 6;" text="+">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

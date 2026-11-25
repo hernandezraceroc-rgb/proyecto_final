@@ -39,6 +39,34 @@ public class App extends Application {
                 900, 760);
     }
 
+    /** Muestra el carrito de la sesión actual. */
+    public static void abrirCarrito(Sesion sesion) {
+        cargar("carrito.fxml",
+                controller -> ((CarritoController) controller).setSesion(sesion),
+                1114, 653);
+    }
+
+    /** Muestra la lista de deseos de la sesión actual. */
+    public static void abrirDeseos(Sesion sesion) {
+        cargar("deseos.fxml",
+                controller -> ((DeseosController) controller).setSesion(sesion),
+                868, 729);
+    }
+
+    /** Muestra el historial de compras de la sesión actual. */
+    public static void abrirHistorial(Sesion sesion) {
+        cargar("historial.fxml",
+                controller -> ((HistorialController) controller).setSesion(sesion),
+                1186, 575);
+    }
+
+    /** Muestra el panel de administración de productos (solo para admin). */
+    public static void abrirAdminProductos(Sesion sesion) {
+        cargar("adminproductos.fxml",
+                controller -> ((AdminProductosController) controller).setSesion(sesion),
+                1176, 549);
+    }
+
     private static void cargar(String archivo, Consumer<Object> configurar,
                                double ancho, double alto) {
         try {
@@ -47,7 +75,7 @@ public class App extends Application {
             configurar.accept(loader.getController());
             escenario.setScene(new Scene(raiz, ancho, alto));
             escenario.centerOnScreen();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("UniShop");

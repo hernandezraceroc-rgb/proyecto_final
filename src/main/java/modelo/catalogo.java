@@ -88,6 +88,14 @@ public class catalogo {
         p.setCantidad(p.getCantidad() - unidades);
         return true;
     }
+
+    // Restaura el stock si la compra no se pudo completar
+    public void reponerStock(String nombre, int unidades) {
+        producto p = buscarPorNombre(nombre);
+        if (p != null && unidades > 0) {
+            p.setCantidad(p.getCantidad() + unidades);
+        }
+    }
     // Filtrar por categoría (los botones del catálogo)
     public ArrayList<producto> filtrarPorCategoria(String categoria) {
         ArrayList<producto> resultado = new ArrayList<>();

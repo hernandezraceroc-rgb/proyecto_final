@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1176.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.AdminProductosController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="1176.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.AdminProductosController">
    <left>
       <VBox prefHeight="559.0" prefWidth="220.0" spacing="15.0" style="-fx-background-color: #0F172A;" BorderPane.alignment="CENTER">
          <padding>
@@ -40,7 +41,12 @@
                   <Font name="Segoe UI Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnNavPedidos" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-alignment: CENTER_LEFT; -fx-padding: 10 15;" text="Pedidos pendientes" textFill="#94a3b8">
+            <Button fx:id="btnNavPedidos" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verPedidos" style="-fx-background-color: transparent; -fx-alignment: CENTER_LEFT; -fx-padding: 10 15;" text="Pedidos pendientes" textFill="#94a3b8">
+               <font>
+                  <Font name="Segoe UI Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#volverAlCatalogo" style="-fx-background-color: transparent; -fx-alignment: CENTER_LEFT; -fx-padding: 10 15;" text="Volver al catálogo" textFill="#94a3b8">
                <font>
                   <Font name="Segoe UI Bold" size="13.0" />
                </font>
@@ -114,7 +120,7 @@
                               <ComboBox fx:id="cbCategoria" prefWidth="150.0" />
                            </children>
                         </VBox>
-                        <Button fx:id="btnGuardar" mnemonicParsing="false" style="-fx-background-color: #1A56DB; -fx-background-radius: 8; -fx-padding: 8 16;" text="Guardar producto" textFill="WHITE">
+                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarProducto" style="-fx-background-color: #1A56DB; -fx-background-radius: 8; -fx-padding: 8 16;" text="Guardar producto" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -122,8 +128,10 @@
                               <Insets bottom="2.0" />
                            </HBox.margin>
                         </Button>
+                        <Hyperlink fx:id="lnkCancelarEdicion" managed="false" mnemonicParsing="false" onAction="#cancelarEdicion" text="Cancelar edición" visible="false" />
                      </children>
                   </HBox>
+                  <Label fx:id="lblMensaje" prefHeight="18.0" />
                </children>
             </VBox>
             <VBox prefHeight="268.0" prefWidth="895.0">

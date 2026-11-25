@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1114.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.CarritoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1114.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.CarritoController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="834.0" style="-fx-background-color: #1A56DB; -fx-padding: 10; -fx-spacing: 8;" BorderPane.alignment="CENTER">
          <children>
@@ -31,7 +31,7 @@
                   <Font name="Segoe UI Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="txtBuscador" prefHeight="24.0" prefWidth="502.0" promptText="Buscar productos, marcas y más...">
+            <TextField prefHeight="24.0" prefWidth="502.0" promptText="Buscar productos, marcas y más...">
                <HBox.margin>
                   <Insets left="15.0" />
                </HBox.margin>
@@ -39,7 +39,7 @@
                   <Font size="10.0" />
                </font>
             </TextField>
-            <Hyperlink prefHeight="21.0" prefWidth="60.0" text="Catálogo" textFill="#ffe300">
+            <Hyperlink fx:id="lnkCatalogo" onAction="#abrirCatalogo" prefHeight="21.0" prefWidth="60.0" text="Catálogo" textFill="#ffe300">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
@@ -47,17 +47,17 @@
                   <Insets left="5.0" />
                </HBox.margin>
             </Hyperlink>
-            <Hyperlink prefHeight="21.0" prefWidth="92.0" text="Lista de deseos" textFill="WHITE">
+            <Hyperlink fx:id="lnkDeseos" onAction="#abrirDeseos" prefHeight="21.0" prefWidth="92.0" text="Lista de deseos" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
             </Hyperlink>
-            <Hyperlink prefHeight="21.0" prefWidth="59.0" text="Historial" textFill="WHITE">
+            <Hyperlink fx:id="lnkHistorial" onAction="#abrirHistorial" prefHeight="21.0" prefWidth="59.0" text="Historial" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="btnCarrito" prefHeight="21.0" prefWidth="49.0" text="Carrito" textFill="WHITE">
+            <Hyperlink fx:id="btnCarrito" onAction="#abrirCarrito" prefHeight="21.0" prefWidth="49.0" text="Carrito" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
@@ -149,7 +149,7 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <Button fx:id="btnFinalizarCompra" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="34.0" prefWidth="278.0" style="-fx-background-color: #1A56DB; -fx-background-radius: 8;" text="Finalizar compra" textFill="WHITE">
+                              <Button fx:id="btnFinalizarCompra" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#finalizarCompra" prefHeight="34.0" prefWidth="278.0" style="-fx-background-color: #1A56DB; -fx-background-radius: 8;" text="Finalizar compra" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -157,7 +157,7 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                               </Button>
-                              <Button fx:id="btnSeguirComprando" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="30.0" prefWidth="278.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #E5E7EB; -fx-border-radius: 8;" text="Seguir comprando" textFill="#374151">
+                              <Button fx:id="btnSeguirComprando" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#seguirComprando" prefHeight="30.0" prefWidth="278.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #E5E7EB; -fx-border-radius: 8;" text="Seguir comprando" textFill="#374151">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -171,7 +171,7 @@
                   </HBox>
                </children>
             </VBox>
-            <Button fx:id="btnDeshacer" mnemonicParsing="false" prefHeight="30.0" prefWidth="185.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: E5E7EB; -fx-border-radius: 12;" text="↶ Deshacer última acción">
+            <Button fx:id="btnDeshacer" mnemonicParsing="false" onAction="#deshacer" prefHeight="30.0" prefWidth="185.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: E5E7EB; -fx-border-radius: 12;" text="↶ Deshacer última acción">
                <VBox.margin>
                   <Insets left="30.0" />
                </VBox.margin>

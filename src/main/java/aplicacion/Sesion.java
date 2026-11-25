@@ -70,13 +70,7 @@ public class Sesion {
 
     /** Cantidad de un producto que ya hay en el carrito. */
     public int cantidadEnCarrito(producto p) {
-        int total = 0;
-        for (NodoProducto n = carrito.getCabeza(); n != null; n = n.getSiguiente()) {
-            if (n.getProducto().equals(p)) {
-                total += n.getCantidad();
-            }
-        }
-        return total;
+        return carrito.cantidadDe(p);
     }
 
     /**
@@ -100,9 +94,17 @@ public class Sesion {
         }
 
         StringBuilder detalle = new StringBuilder();
+        Map<String, Integer> descontados = new LinkedHashMap<>();
         for (Map.Entry<producto, Integer> e : unidades.entrySet()) {
-            catalogo.descontarStock(e.getKey().getNombre(), e.getValue());
-            detalle.append(e.getValue()).append(" x ").append(e.getKey().getNombre()).append(", ");
+            String nombre = e.getKey().getNombre();
+            if (!catalogo.descontarStock(nombre, e.getValue())) {
+                for (Map.Entry<String, Integer> reparado : descontados.entrySet()) {
+                    catalogo.reponerStock(reparado.getKey(), reparado.getValue());
+                }
+                return false;
+            }
+            descontados.put(nombre, e.getValue());
+            detalle.append(e.getValue()).append(" x ").append(nombre).append(", ");
         }
         if (detalle.length() > 2) {
             detalle.setLength(detalle.length() - 2);

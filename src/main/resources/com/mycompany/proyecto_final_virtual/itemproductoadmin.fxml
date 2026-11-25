@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="885.0" style="-fx-background-color: white; -fx-border-color: transparent transparent #F3F4F6 transparent;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.ItemProductoAdminController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="885.0" style="-fx-background-color: white; -fx-border-color: transparent transparent #F3F4F6 transparent;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.ItemProductoAdminController">
    <padding>
       <Insets bottom="14.0" left="20.0" right="20.0" top="14.0" />
    </padding>
@@ -25,8 +25,8 @@
       </Label>
       <HBox prefHeight="100.0" prefWidth="140.0" spacing="12.0">
          <children>
-            <Hyperlink fx:id="btnEditar" text="Editar" textFill="#2563eb" />
-            <Hyperlink fx:id="btnEliminar" text="Eliminar" textFill="#ef4444" />
+            <Hyperlink fx:id="btnEditar" onAction="#editar" text="Editar" textFill="#2563eb" />
+            <Hyperlink fx:id="btnEliminar" onAction="#eliminar" text="Eliminar" textFill="#ef4444" />
          </children>
       </HBox>
    </children>

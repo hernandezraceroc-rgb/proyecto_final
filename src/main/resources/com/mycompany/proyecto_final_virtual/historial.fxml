@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.HistorialController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.HistorialController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="834.0" style="-fx-background-color: #1A56DB; -fx-padding: 10; -fx-spacing: 8;" BorderPane.alignment="CENTER">
          <children>
@@ -37,7 +37,7 @@
                   <Font size="10.0" />
                </font>
             </TextField>
-            <Hyperlink prefHeight="21.0" prefWidth="60.0" text="Catálogo" textFill="#ffe300">
+            <Hyperlink fx:id="lnkCatalogo" onAction="#abrirCatalogo" prefHeight="21.0" prefWidth="60.0" text="Catálogo" textFill="#ffe300">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
@@ -45,17 +45,17 @@
                   <Insets left="5.0" />
                </HBox.margin>
             </Hyperlink>
-            <Hyperlink prefHeight="21.0" prefWidth="92.0" text="Lista de deseos" textFill="WHITE">
+            <Hyperlink fx:id="lnkDeseos" onAction="#abrirDeseos" prefHeight="21.0" prefWidth="92.0" text="Lista de deseos" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
             </Hyperlink>
-            <Hyperlink prefHeight="21.0" prefWidth="59.0" text="Historial" textFill="WHITE">
+            <Hyperlink fx:id="lnkHistorial" onAction="#abrirHistorial" prefHeight="21.0" prefWidth="59.0" text="Historial" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="btnCarrito" prefHeight="21.0" prefWidth="49.0" text="Carrito" textFill="WHITE">
+            <Hyperlink fx:id="btnCarrito" onAction="#abrirCarrito" prefHeight="21.0" prefWidth="49.0" text="Carrito" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
