@@ -1,0 +1,42 @@
+[
+  {
+    "nombre": "Audífonos Bluetooth Pro",
+    "cantidad": 24,
+    "valor": 129900.0
+  },
+  {
+    "nombre": "Teclado Mecánico RGB",
+    "cantidad": 12,
+    "valor": 219900.0
+  },
+  {
+    "nombre": "Mouse Inalámbrico Ergonómico",
+    "cantidad": 30,
+    "valor": 89900.0
+  },
+  {
+    "nombre": "Monitor 24\" Full HD",
+    "cantidad": 8,
+    "valor": 649900.0
+  },
+  {
+    "nombre": "Lámpara de Escritorio LED",
+    "cantidad": 15,
+    "valor": 45900.0
+  },
+  {
+    "nombre": "Organizador de Escritorio",
+    "cantidad": 20,
+    "valor": 35900.0
+  },
+  {
+    "nombre": "Morral Antirrobo",
+    "cantidad": 18,
+    "valor": 159900.0
+  },
+  {
+    "nombre": "Mancuernas Ajustables 10 kg",
+    "cantidad": 6,
+    "valor": 189900.0
+  }
+]

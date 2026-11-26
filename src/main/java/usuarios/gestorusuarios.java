@@ -5,6 +5,7 @@
 package usuarios;
 
 import java.util.ArrayList;
+import persistencia.GestorJSON;
 
 /**
  *
@@ -15,9 +16,13 @@ public class gestorusuarios {
     private ArrayList<usuario> usuarios;
  
     public gestorusuarios() {
-        usuarios = new ArrayList<>();
-        // Admin precargado para poder registrar productos
-        usuarios.add(new usuario("admin", "admin123", usuario.Rol.ADMIN));
+        // Carga los usuarios guardados en usuarios.json
+        usuarios = GestorJSON.cargarUsuarios();
+        if (usuarios.isEmpty()) {
+            // Admin precargado para poder registrar productos
+            usuarios.add(new usuario("admin", "admin123", usuario.Rol.ADMIN));
+            GestorJSON.guardarUsuarios(usuarios);
+        }
     }
     // Registro de un cliente nuevo
     public boolean registrarCliente(String nombreUsuario, String clave) {
@@ -29,6 +34,7 @@ public class gestorusuarios {
             return false; // el usuario ya existe
         }
         usuarios.add(new usuario(nombreUsuario.trim(), clave, usuario.Rol.CLIENTE));
+        GestorJSON.guardarUsuarios(usuarios);
         return true;
     }
     // Login: devuelve el usuario si las credenciales son correctas, o null si no

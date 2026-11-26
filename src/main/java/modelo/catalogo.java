@@ -1,6 +1,6 @@
 package modelo;
 
-
+import persistencia.GestorJSON;
 import java.util.ArrayList;
 
 /*
@@ -19,7 +19,7 @@ public class catalogo {
     public catalogo(){
         
         productos = new ArrayList<>();
-        
+        productos = GestorJSON.cargarProductos();
     }
     
     //registrar producto(lo usa el admin)
