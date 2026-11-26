@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="95.0" prefWidth="213.0" spacing="12.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.ItemPedidoController">
+   <children>
+      <VBox fx:id="boxTarjeta" prefHeight="200.0" prefWidth="175.0" spacing="4.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #E5E7EB; -fx-border-radius: 10; -fx-padding: 14;">
+         <children>
+            <Label fx:id="lblIdPedido" prefWidth="70.0" text="ID">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCliente" maxWidth="1.7976931348623157E308" text="Nombre cliente" VBox.vgrow="ALWAYS" />
+            <Label fx:id="lblTotal" prefWidth="120.0" text="Total" textFill="#6b7280" />
+         </children>
+      </VBox>
+      <Label fx:id="lblFlecha" text="→" textFill="#6b7280">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</HBox>
