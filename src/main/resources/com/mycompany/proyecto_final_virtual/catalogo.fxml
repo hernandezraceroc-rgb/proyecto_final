@@ -9,18 +9,20 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="729.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.CatalogoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="729.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.CatalogoController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="834.0" style="-fx-background-color: #1A56DB; -fx-padding: 10; -fx-spacing: 8;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="imgLogo" fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@logo_unishop.png" />
+                  <Image url="@img/logo.png" />
                </image>
                <HBox.margin>
                   <Insets left="8.0" />
@@ -39,7 +41,7 @@
                   <Font size="10.0" />
                </font>
             </TextField>
-            <Hyperlink fx:id="lnkCatalogo" onAction="#mostrarCatalogo" prefHeight="21.0" prefWidth="60.0" text="Catálogo" textFill="#ffe300">
+            <Hyperlink fx:id="btnCatalogo" prefHeight="21.0" prefWidth="60.0" text="Catálogo" textFill="#ffe300">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
@@ -47,31 +49,31 @@
                   <Insets left="5.0" />
                </HBox.margin>
             </Hyperlink>
-            <Hyperlink fx:id="lnkDeseos" onAction="#abrirDeseos" prefHeight="21.0" prefWidth="92.0" text="Lista de deseos" textFill="WHITE">
+            <Hyperlink fx:id="btnDeseos" prefHeight="21.0" prefWidth="92.0" text="Lista de deseos" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="lnkHistorial" onAction="#abrirHistorial" prefHeight="21.0" prefWidth="59.0" text="Historial" textFill="WHITE">
+            <Hyperlink fx:id="btnHistorial" prefHeight="21.0" prefWidth="59.0" text="Historial" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="btnCarrito" onAction="#abrirCarrito" prefHeight="21.0" prefWidth="49.0" text="Carrito" textFill="WHITE">
+            <Hyperlink fx:id="btnCarrito" prefHeight="21.0" prefWidth="110.0" text="Carrito" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
             </Hyperlink>
-            <Label fx:id="lblNombreUsuario" prefHeight="21.0" prefWidth="120.0" style="-fx-background-color: #1C44B2;; -fx-background-radius: 50; -fx-padding: 3 10 3 10;" text="Camilo Hernández" textFill="WHITE">
+            <Hyperlink fx:id="btnSalir" prefHeight="21.0" prefWidth="40.0" text="Salir" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="11.0" />
+               </font>
+            </Hyperlink>
+            <Label fx:id="lblNombreUsuario" prefHeight="21.0" prefWidth="150.0" style="-fx-background-color: #1C44B2;; -fx-background-radius: 50; -fx-padding: 3 10 3 10;" text="Camilo Hernández" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="11.0" />
                </font>
             </Label>
-            <Hyperlink fx:id="lnkAdmin" onAction="#administrarProductos" prefHeight="21.0" prefWidth="72.0" text="Administrar" textFill="#FDE047" visible="false" managed="false">
-               <font>
-                  <Font name="Segoe UI Bold" size="11.0" />
-               </font>
-            </Hyperlink>
          </children>
          <BorderPane.margin>
             <Insets />
@@ -79,7 +81,7 @@
       </HBox>
    </top>
    <center>
-      <VBox fillWidth="false" prefHeight="626.0" prefWidth="868.0" spacing="20.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="626.0" prefWidth="868.0" spacing="20.0" BorderPane.alignment="CENTER">
          <padding>
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </padding>
@@ -122,9 +124,13 @@
                   </HBox>
                </children>
             </HBox>
-            <ScrollPane prefHeight="576.0" prefWidth="807.0">
+            <ScrollPane fitToHeight="false" fitToWidth="true" prefHeight="576.0" prefWidth="807.0">
                <content>
                   <GridPane fx:id="gridProductos" hgap="20.0" vgap="20.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>

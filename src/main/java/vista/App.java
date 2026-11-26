@@ -1,91 +1,43 @@
 package vista;
 
-import aplicacion.Sesion;
 import java.io.IOException;
-import java.util.function.Consumer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 /**
- * Punto de entrada de la aplicación UniShop.
- * Carga login.fxml al iniciar y cambia a catalogo.fxml cuando el login es correcto.
+ * JavaFX App
  */
 public class App extends Application {
 
-    private static final String RUTA_FXML = "/com/mycompany/proyecto_final_virtual/";
-    private static Stage escenario;
+    public static final String RUTA_VISTAS = "/com/mycompany/proyecto_final_virtual/";
+
+    private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        escenario = stage;
+        scene = new Scene(loadFXML("login"), 1000, 750);
         stage.setTitle("UniShop");
-        mostrarLogin();
+        stage.setScene(scene);
         stage.show();
     }
 
-    /** Muestra la pantalla de inicio de sesión. */
-    public static void mostrarLogin() {
-        cargar("login.fxml", controller -> { }, 849, 557);
+    public static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
     }
 
-    /** Muestra el catálogo para el usuario que acaba de iniciar sesión. */
-    public static void abrirCatalogo(Sesion sesion) {
-        cargar("catalogo.fxml",
-                controller -> ((CatalogoController) controller).setSesion(sesion),
-                900, 760);
+    public static FXMLLoader cargarLoader(String fxml) {
+        return new FXMLLoader(App.class.getResource(RUTA_VISTAS + fxml + ".fxml"));
     }
 
-    /** Muestra el carrito de la sesión actual. */
-    public static void abrirCarrito(Sesion sesion) {
-        cargar("carrito.fxml",
-                controller -> ((CarritoController) controller).setSesion(sesion),
-                1114, 653);
-    }
-
-    /** Muestra la lista de deseos de la sesión actual. */
-    public static void abrirDeseos(Sesion sesion) {
-        cargar("deseos.fxml",
-                controller -> ((DeseosController) controller).setSesion(sesion),
-                868, 729);
-    }
-
-    /** Muestra el historial de compras de la sesión actual. */
-    public static void abrirHistorial(Sesion sesion) {
-        cargar("historial.fxml",
-                controller -> ((HistorialController) controller).setSesion(sesion),
-                1186, 575);
-    }
-
-    /** Muestra el panel de administración de productos (solo para admin). */
-    public static void abrirAdminProductos(Sesion sesion) {
-        cargar("adminproductos.fxml",
-                controller -> ((AdminProductosController) controller).setSesion(sesion),
-                1176, 549);
-    }
-
-    private static void cargar(String archivo, Consumer<Object> configurar,
-                               double ancho, double alto) {
-        try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource(RUTA_FXML + archivo));
-            Parent raiz = loader.load();
-            configurar.accept(loader.getController());
-            escenario.setScene(new Scene(raiz, ancho, alto));
-            escenario.centerOnScreen();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("UniShop");
-            alerta.setHeaderText("No se pudo abrir la pantalla " + archivo);
-            alerta.setContentText(e.getMessage());
-            alerta.showAndWait();
-        }
+    private static Parent loadFXML(String fxml) throws IOException {
+        return cargarLoader(fxml).load();
     }
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
+
 }

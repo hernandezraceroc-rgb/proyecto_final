@@ -1,0 +1,65 @@
+[
+  {
+    "nombre": "Audífonos Bluetooth Pro",
+    "cantidad": 23,
+    "valor": 129900.0,
+    "categoria": "Tecnología",
+    "imagen": "audifonos.png"
+  },
+  {
+    "nombre": "Teclado Mecánico RGB",
+    "cantidad": 12,
+    "valor": 219900.0,
+    "categoria": "Tecnología",
+    "imagen": "teclado.png"
+  },
+  {
+    "nombre": "Mouse Inalámbrico Ergonómico",
+    "cantidad": 30,
+    "valor": 89900.0,
+    "categoria": "Tecnología",
+    "imagen": "mouse.png"
+  },
+  {
+    "nombre": "Monitor 24\" Full HD",
+    "cantidad": 8,
+    "valor": 649900.0,
+    "categoria": "Tecnología",
+    "imagen": "monitor.png"
+  },
+  {
+    "nombre": "Lámpara de Escritorio LED",
+    "cantidad": 15,
+    "valor": 45900.0,
+    "categoria": "Hogar",
+    "imagen": "lampara.png"
+  },
+  {
+    "nombre": "Organizador de Escritorio",
+    "cantidad": 20,
+    "valor": 35900.0,
+    "categoria": "Hogar",
+    "imagen": "organizador.png"
+  },
+  {
+    "nombre": "Morral Antirrobo",
+    "cantidad": 18,
+    "valor": 159900.0,
+    "categoria": "Accesorios",
+    "imagen": "morral.png"
+  },
+  {
+    "nombre": "Mancuernas Ajustables 10 kg",
+    "cantidad": 6,
+    "valor": 189900.0,
+    "categoria": "Deportes",
+    "imagen": "mancuernas.png"
+  },
+  {
+    "nombre": "Audífonos Bluetooth Pro max",
+    "cantidad": 24,
+    "valor": 129900.0,
+    "categoria": "Tecnología",
+    "imagen": "default.png"
+  }
+]

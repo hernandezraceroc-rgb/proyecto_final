@@ -1,146 +1,108 @@
 package vista;
 
-import aplicacion.Sesion;
 import java.io.IOException;
-import javafx.event.ActionEvent;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import modelo.NodoProducto;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import modelo.producto;
 
-/** Controlador de deseos.fxml: lista de deseos con búsqueda y acciones por tarjeta. */
 public class DeseosController {
 
-    private static final String RUTA_ITEM =
-            "/com/mycompany/proyecto_final_virtual/itemdeseo.fxml";
+    @FXML
+    private TableView<producto> tblDeseos;
 
     @FXML
-    private TextField txtBuscador;
+    private TableColumn<producto, String> colNombre;
 
     @FXML
-    private GridPane gridDeseos;
+    private TableColumn<producto, String> colCategoria;
 
     @FXML
-    private Label lblNombreUsuario;
+    private TableColumn<producto, String> colPrecio;
 
     @FXML
-    private Hyperlink lnkCatalogo;
+    private TableColumn<producto, String> colStock;
 
     @FXML
-    private Hyperlink lnkDeseos;
+    private Button btnPasar;
 
     @FXML
-    private Hyperlink lnkHistorial;
+    private Button btnQuitar;
 
     @FXML
-    private Hyperlink btnCarrito;
+    private Button btnVolver;
 
-    private Sesion sesion;
+    private final Sesion sesion = Sesion.get();
 
-    @FXML
     public void initialize() {
-        txtBuscador.textProperty().addListener((obs, anterior, actual) -> actualizarDeseos());
+        colNombre.setCellValueFactory(d -> new ReadOnlyStringWrapper(d.getValue().getNombre()));
+        colCategoria.setCellValueFactory(d -> new ReadOnlyStringWrapper(d.getValue().getCategoria()));
+        colPrecio.setCellValueFactory(d ->
+                new ReadOnlyStringWrapper("$ " + String.format("%,.0f", d.getValue().getPrecio())));
+        colStock.setCellValueFactory(d ->
+                new ReadOnlyStringWrapper(String.valueOf(d.getValue().getCantidad())));
+
+        btnPasar.setOnAction(e -> pasarAlCarrito());
+        btnQuitar.setOnAction(e -> quitar());
+        btnVolver.setOnAction(e -> abrir("catalogo"));
+
+        refrescar();
     }
 
-    /** Lo llama App al abrir la pantalla de deseos. */
-    public void setSesion(Sesion sesion) {
-        this.sesion = sesion;
-        lblNombreUsuario.setText(sesion.getUsuario() == null
-                ? "Invitado" : sesion.getUsuario().getNombreUsuario());
-        actualizarDeseos();
+    private void refrescar() {
+        tblDeseos.setItems(FXCollections.observableArrayList(sesion.getDeseos().listar()));
     }
 
-    @FXML
-    public void abrirCatalogo(ActionEvent event) {
-        if (sesion != null) {
-            App.abrirCatalogo(sesion);
+    private producto seleccionado() {
+        producto p = tblDeseos.getSelectionModel().getSelectedItem();
+        if (p == null) {
+            aviso(Alert.AlertType.WARNING, "Selecciona un producto de la lista.");
         }
+        return p;
     }
 
-    @FXML
-    public void abrirDeseos(ActionEvent event) {
-        if (sesion != null) {
-            App.abrirDeseos(sesion);
-        }
-    }
-
-    @FXML
-    public void abrirHistorial(ActionEvent event) {
-        if (sesion != null) {
-            App.abrirHistorial(sesion);
-        }
-    }
-
-    @FXML
-    public void abrirCarrito(ActionEvent event) {
-        if (sesion != null) {
-            App.abrirCarrito(sesion);
-        }
-    }
-
-    /** Vuelve a construir la cuadrícula a partir del estado real de la lista. */
-    private void actualizarDeseos() {
-        if (sesion == null) {
+    private void pasarAlCarrito() {
+        producto p = seleccionado();
+        if (p == null) {
             return;
         }
-        gridDeseos.getChildren().clear();
-
-        String busqueda = txtBuscador.getText();
-        String consulta = busqueda == null ? "" : busqueda.trim().toLowerCase();
-
-        int columna = 0;
-        int fila = 0;
-        for (NodoProducto nodo = sesion.getDeseos().getCabeza();
-             nodo != null;
-             nodo = nodo.getSiguiente()) {
-            if (!coincide(nodo, consulta)) {
-                continue;
-            }
-            gridDeseos.add(crearItem(nodo.getProducto()), columna, fila);
-            columna++;
-            if (columna == 2) {
-                columna = 0;
-                fila++;
-            }
+        if (!sesion.agregarAlCarrito(p, 1)) {
+            aviso(Alert.AlertType.WARNING, "No hay stock disponible de este producto.");
+            return;
         }
-
-        if (gridDeseos.getChildren().isEmpty()) {
-            Label mensaje = new Label(consulta.isEmpty()
-                    ? "Tu lista de deseos está vacía."
-                    : "No hay deseos que coincidan con la búsqueda.");
-            mensaje.setTextFill(Color.web("#6B7280"));
-            GridPane.setColumnSpan(mensaje, 2);
-            gridDeseos.add(mensaje, 0, 0);
-        }
+        sesion.getDeseos().eliminarProducto(p);
+        sesion.guardarDeseos();
+        refrescar();
+        aviso(Alert.AlertType.INFORMATION, "Producto agregado al carrito.");
     }
 
-    private boolean coincide(NodoProducto nodo, String consulta) {
-        if (consulta.isEmpty()) {
-            return true;
+    private void quitar() {
+        producto p = seleccionado();
+        if (p == null) {
+            return;
         }
-        String nombre = nodo.getProducto().getNombre();
-        String categoria = nodo.getProducto().getCategoria();
-        return (nombre != null && nombre.toLowerCase().contains(consulta))
-                || (categoria != null && categoria.toLowerCase().contains(consulta));
+        sesion.getDeseos().eliminarProducto(p);
+        sesion.guardarDeseos();
+        refrescar();
     }
 
-    private Node crearItem(modelo.producto producto) {
+    private void abrir(String fxml) {
         try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource(RUTA_ITEM));
-            Node tarjeta = loader.load();
-            ItemDeseoController item = loader.getController();
-            item.setDatos(producto, sesion, this::actualizarDeseos);
-            return tarjeta;
-        } catch (IOException e) {
-            e.printStackTrace();
-            Label error = new Label("No se pudo cargar " + producto.getNombre());
-            error.setTextFill(Color.web("#DC2626"));
-            return error;
+            App.setRoot(fxml);
+        } catch (IOException ex) {
+            aviso(Alert.AlertType.ERROR, "No se pudo abrir la pantalla: " + ex.getMessage());
         }
+    }
+
+    private void aviso(Alert.AlertType tipo, String mensaje) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle("UniShop");
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 }

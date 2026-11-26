@@ -1,17 +1,13 @@
 package vista;
 
-import aplicacion.Sesion;
-import java.util.Locale;
-import vista.util.Recursos;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import modelo.producto;
 
-/** Controlador de la tarjeta de producto (itemproducto.fxml). */
 public class ItemProductoController {
 
     @FXML
@@ -27,62 +23,77 @@ public class ItemProductoController {
     private Label lblStock;
 
     @FXML
-    private Label lblMensaje;
-
-    @FXML
     private Button btnAgregarCarrito;
 
     @FXML
     private Button btnAgregarDeseos;
 
-    private producto producto;
-    private Sesion sesion;
+    private producto productoActual;
+    private Runnable alCambiar;
 
-    public void setProducto(producto p, Sesion sesion) {
-        this.producto = p;
-        this.sesion = sesion;
-        imgProducto.setImage(Recursos.producto(p.getCategoria()));
+    public void initialize() {
+        btnAgregarCarrito.setOnAction(e -> agregarAlCarrito());
+        btnAgregarDeseos.setOnAction(e -> agregarADeseos());
+    }
+
+    public void setProducto(producto p, Runnable alCambiar) {
+        this.productoActual = p;
+        this.alCambiar = alCambiar;
+
+        cargarImagen(p);
         lblNombre.setText(p.getNombre());
-        lblPrecio.setText(String.format(Locale.US, "$%,.0f", p.getPrecio()));
-        lblStock.setText("Stock: " + p.getCantidad() + " uds.");
-        lblStock.setTextFill(p.getCantidad() > 0 ? Color.web("#059669") : Color.web("#DC2626"));
-        mensaje("");
+        lblPrecio.setText("$ " + String.format("%,.0f", p.getPrecio()));
+
+        boolean agotado = p.getCantidad() <= 0;
+        lblStock.setText(agotado ? "Agotado" : "Stock: " + p.getCantidad() + " uds.");
+        lblStock.setStyle("-fx-text-fill: " + (agotado ? "#dc2626" : "#10b981")
+                + "; -fx-font-size: 11px;");
+
+        btnAgregarCarrito.setDisable(agotado);
+
+        boolean enDeseos = Sesion.get().getDeseos().contiene(p);
+        btnAgregarDeseos.setText(enDeseos ? "En deseos" : "+ Deseos");
+        btnAgregarDeseos.setDisable(enDeseos);
     }
 
-    @FXML
-    public void agregarCarrito(ActionEvent event) {
-        if (producto == null || sesion == null) {
-            return;
+    private void cargarImagen(producto p) {
+        String archivo = (p.getImagen() == null || p.getImagen().isBlank())
+                ? "default.png" : p.getImagen();
+        java.net.URL recurso = App.class.getResource(App.RUTA_VISTAS + "img/" + archivo);
+        if (recurso == null) {
+            recurso = App.class.getResource(App.RUTA_VISTAS + "img/default.png");
         }
-        if (producto.getCantidad() <= 0) {
-            mensaje("Sin stock disponible");
-            return;
-        }
-        int yaAgregado = sesion.cantidadEnCarrito(producto);
-        if (yaAgregado >= producto.getCantidad()) {
-            mensaje("Ya agregaste todo el stock");
-            return;
-        }
-        sesion.getCarrito().agregarProducto(producto, 1);
-        mensaje("✓ En el carrito");
+        imgProducto.setImage(recurso == null ? null : new Image(recurso.toExternalForm()));
     }
 
-    @FXML
-    public void agregarDeseos(ActionEvent event) {
-        if (producto == null || sesion == null) {
+    private void agregarAlCarrito() {
+        if (productoActual == null) {
             return;
         }
-        if (sesion.getDeseos().contiene(producto)) {
-            mensaje("Ya está en tu lista de deseos");
+        if (!Sesion.get().agregarAlCarrito(productoActual, 1)) {
+            alerta("No hay más stock disponible de este producto.");
             return;
         }
-        sesion.getDeseos().agregarProducto(producto);
-        mensaje("✓ Guardado en deseos");
+        if (alCambiar != null) {
+            alCambiar.run();
+        }
     }
 
-    private void mensaje(String texto) {
-        lblMensaje.setText(texto);
-        lblMensaje.setTextFill(texto.startsWith("✓")
-                ? Color.web("#059669") : Color.web("#DC2626"));
+    private void agregarADeseos() {
+        if (productoActual == null) {
+            return;
+        }
+        if (Sesion.get().agregarADeseos(productoActual)) {
+            btnAgregarDeseos.setText("En deseos");
+            btnAgregarDeseos.setDisable(true);
+        }
+    }
+
+    private void alerta(String mensaje) {
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setTitle("UniShop");
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 }

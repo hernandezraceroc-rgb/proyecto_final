@@ -1,0 +1,14 @@
+[
+  {
+    "fecha": "2026-11-25 20:59",
+    "cliente": "camilo",
+    "total": 137900.0,
+    "items": [
+      {
+        "nombre": "Audífonos Bluetooth Pro",
+        "cantidad": 1,
+        "precio": 129900.0
+      }
+    ]
+  }
+]
