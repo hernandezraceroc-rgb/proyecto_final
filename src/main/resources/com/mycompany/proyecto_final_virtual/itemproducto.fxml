@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="250.0" spacing="8.0" style="-fx-background-radius: 12; -fx-border-radius: 12; -fx-border-color: #E5E7EB;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.ItemProductoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="370.0" spacing="8.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-color: #E5E7EB;" xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.ItemProductoController">
    <padding>
       <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
    </padding>
    <children>
-      <ImageView fx:id="imgProducto" fitHeight="120.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgProducto" fitHeight="150.0" fitWidth="346.0" pickOnBounds="true" preserveRatio="true" smooth="true" style="-fx-background-color: #EEF2FF;" />
       <Label fx:id="lblNombre" text="Nombre del producto">
          <font>
             <Font name="Segoe UI Bold" size="14.0" />
@@ -29,7 +29,7 @@
             <Font name="Segoe UI" size="11.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0" VBox.vgrow="ALWAYS">
+      <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="346.0" spacing="8.0" VBox.vgrow="ALWAYS">
          <children>
             <Button fx:id="btnAgregarCarrito" mnemonicParsing="false" style="-fx-background-color: #1A56DB; -fx-background-radius: 8; -fx-padding: 6 12 6 12;" text="Agregar al carrito" textFill="WHITE">
                <font>

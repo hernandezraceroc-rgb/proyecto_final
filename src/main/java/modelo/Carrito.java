@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Carrito {
     private NodoProducto cabeza;
     private int tamaño;
@@ -34,49 +36,51 @@ public class Carrito {
 
     // Botón "+"
     public void incrementarCantidad(producto p) {
-        NodoProducto actual = cabeza;
-        while (actual != null) {
-            if (actual.getProducto().equals(p)) {
-                historialAcciones.apilar(new Accion(Accion.TipoAccion.INCREMENTAR, p, actual.getCantidad()));
-                actual.setCantidad(actual.getCantidad() + 1);
-                return;
-            }
-            actual = actual.getSiguiente();
+        NodoProducto actual = buscarNodo(p);
+        if (actual != null) {
+            historialAcciones.apilar(new Accion(Accion.TipoAccion.INCREMENTAR, p, actual.getCantidad()));
+            actual.setCantidad(actual.getCantidad() + 1);
         }
     }
 
     // Botón "-"
     public void decrementarCantidad(producto p) {
-        NodoProducto actual = cabeza;
-        while (actual != null) {
-            if (actual.getProducto().equals(p)) {
-                historialAcciones.apilar(new Accion(Accion.TipoAccion.DECREMENTAR, p, actual.getCantidad()));
-                if (actual.getCantidad() > 1) {
-                    actual.setCantidad(actual.getCantidad() - 1);
-                } else {
-                    eliminarProductoSinHistorial(p);
-                }
-                return;
+        NodoProducto actual = buscarNodo(p);
+        if (actual != null) {
+            historialAcciones.apilar(new Accion(Accion.TipoAccion.DECREMENTAR, p, actual.getCantidad()));
+            if (actual.getCantidad() > 1) {
+                actual.setCantidad(actual.getCantidad() - 1);
+            } else {
+                eliminarProductoSinHistorial(p);
             }
-            actual = actual.getSiguiente();
         }
     }
 
     // Botón "Quitar"
     public boolean eliminarProducto(producto p) {
+        NodoProducto actual = buscarNodo(p);
+        if (actual == null) {
+            return false;
+        }
+        historialAcciones.apilar(new Accion(Accion.TipoAccion.ELIMINAR, p, actual.getCantidad()));
+        return eliminarProductoSinHistorial(p);
+    }
+
+    private NodoProducto buscarNodo(producto p) {
         NodoProducto actual = cabeza;
         while (actual != null) {
             if (actual.getProducto().equals(p)) {
-                historialAcciones.apilar(new Accion(Accion.TipoAccion.ELIMINAR, p, actual.getCantidad()));
-                return eliminarProductoSinHistorial(p);
+                return actual;
             }
             actual = actual.getSiguiente();
         }
-        return false;
+        return null;
     }
 
     private boolean eliminarProductoSinHistorial(producto p) {
-        if (cabeza == null) return false;
+        if (cabeza == null) {
+            return false;
+        }
 
         if (cabeza.getProducto().equals(p)) {
             cabeza = cabeza.getSiguiente();
@@ -99,7 +103,6 @@ public class Carrito {
     // Botón "Deshacer última acción"
     public boolean deshacerUltimaAccion() {
         if (historialAcciones.estaVacia()) {
-            System.out.println("No hay acciones para deshacer.");
             return false;
         }
 
@@ -118,17 +121,38 @@ public class Carrito {
                 break;
             case INCREMENTAR:
             case DECREMENTAR:
-                NodoProducto actual = cabeza;
-                while (actual != null) {
-                    if (actual.getProducto().equals(p)) {
-                        actual.setCantidad(ultimaAccion.getCantidadPrevia());
-                        break;
-                    }
-                    actual = actual.getSiguiente();
+                NodoProducto actual = buscarNodo(p);
+                if (actual != null) {
+                    actual.setCantidad(ultimaAccion.getCantidadPrevia());
+                } else {
+                    // Si la acción había quitado el producto (cantidad 1), se restaura
+                    NodoProducto restaurado = new NodoProducto(p, ultimaAccion.getCantidadPrevia());
+                    restaurado.setSiguiente(cabeza);
+                    cabeza = restaurado;
+                    tamaño++;
                 }
                 break;
         }
         return true;
+    }
+
+    public int getCantidad(producto p) {
+        NodoProducto actual = buscarNodo(p);
+        return actual == null ? 0 : actual.getCantidad();
+    }
+
+    public boolean puedeDeshacer() {
+        return !historialAcciones.estaVacia();
+    }
+
+    public ArrayList<NodoProducto> getItems() {
+        ArrayList<NodoProducto> items = new ArrayList<>();
+        NodoProducto actual = cabeza;
+        while (actual != null) {
+            items.add(actual);
+            actual = actual.getSiguiente();
+        }
+        return items;
     }
 
     // Cálculos para la barra lateral
@@ -147,7 +171,9 @@ public class Carrito {
     }
 
     public double calcularTotalFinal() {
-        if (cabeza == null) return 0;
+        if (cabeza == null) {
+            return 0;
+        }
         return calcularSubtotal() + COSTO_ENVIO;
     }
 
@@ -167,6 +193,11 @@ public class Carrito {
         historialAcciones = new PilaAcciones();
     }
 
-    public NodoProducto getCabeza() { return cabeza; }
-    public int getTamaño() { return tamaño; }
+    public NodoProducto getCabeza() {
+        return cabeza;
+    }
+
+    public int getTamaño() {
+        return tamaño;
+    }
 }

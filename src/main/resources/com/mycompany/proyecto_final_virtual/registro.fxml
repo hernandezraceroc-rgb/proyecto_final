@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: #F3F4F6;" xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.RegistroController">
+   <children>
+      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="360.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-padding: 30;">
+         <children>
+            <Label text="Crear cuenta">
+               <font>
+                  <Font name="Segoe UI Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label text="Regístrate para comprar en UniShop" textFill="#6B7280">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label text="Usuario">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtNombre" promptText="Tu nombre de usuario" />
+            <Label text="Contraseña">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="txtClave" promptText="Mínimo 4 caracteres" />
+            <Label text="Confirmar contraseña">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="txtConfirmar" promptText="Repite la contraseña" />
+            <Button fx:id="btnCrear" maxWidth="Infinity" mnemonicParsing="false" style="-fx-background-color: #1A56DB; -fx-background-radius: 8; -fx-text-fill: white; -fx-padding: 8;" text="Registrarme">
+               <font>
+                  <Font name="Segoe UI Bold" size="12.0" />
+               </font>
+            </Button>
+            <Hyperlink fx:id="btnVolver" text="Ya tengo cuenta, iniciar sesión" />
+         </children>
+      </VBox>
+   </children>
+</StackPane>
